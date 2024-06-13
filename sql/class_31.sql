@@ -85,6 +85,14 @@ join tb_categories as c
 on p.category_id = c.category_id
 where p.color = '퍼플';
 
+-- 1단계
+-- 결과집합에서 중복 제거를 할때 distinct
+select distinct c.category_name
+from tb_products as p
+join tb_categories as c
+on p.category_id = c.category_id
+where p.color = '샤인';
+
 -- 가장 비싼 상품을 가진 카테고리 찾기
 -- 각 카테고리 중 가장 비싼 상품을 가지고 있는 카테고리와 그 상품의 정보를 조회하는 쿼리
 select c.category_name, p.product_name, max(p.price) as 'price', p.size, p.color
@@ -94,3 +102,11 @@ on p.category_id = c.category_id
 group by c.category_id
 order by max(p.price) desc
 limit 2;
+
+select *, max(p.price) as max_price
+from tb_products as p
+join tb_categories as c
+on p.category_id = c.category_id
+group by c.category_name
+order by max_price desc
+limit 1;

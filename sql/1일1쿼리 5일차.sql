@@ -88,7 +88,7 @@ select e.first_name, e.last_name
 from employees as e
 join dept_manager as dm
 on e.emp_no = dm.emp_no
-join( select dept_no, count(*) as a
+join(select dept_no, count(*) as a
         from dept_emp
         where to_date = '9999-01-01'
         group by dept_no
